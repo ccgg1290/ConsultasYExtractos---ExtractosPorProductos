@@ -1,0 +1,74 @@
+version '1.0-SNAPSHOT'
+
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:4.0.15")
+    }
+}
+ext{
+    serenityVersion = '4.0.15'
+}
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: "net.serenity-bdd.serenity-gradle-plugin"
+
+compileJava {
+    sourceCompatibility = 17
+    targetCompatibility = 17
+}
+
+dependencies {
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
+    implementation group: 'junit', name: 'junit', version: '4.13.2'
+    implementation 'org.assertj:assertj-core:3.22.0'
+    implementation 'org.slf4j:slf4j-simple:1.7.33'
+    implementation "net.serenity-bdd:serenity-core:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-junit:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-cucumber:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:$rootProject.ext.serenityVersion"
+    //para manejar archivos excel
+    implementation 'org.apache.poi:poi-ooxml:4.1.2'
+    //para descargar el driver automaticamente
+    implementation 'io.github.bonigarcia:webdrivermanager:5.4.1'
+    implementation 'org.reflections:reflections:0.10.2'
+    implementation 'org.knowm.xchart:xchart:3.8.0'
+    implementation 'org.jfree:jfreechart:1.5.3'
+    testImplementation 'junit:junit:4.13.1'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+
+test {
+    useJUnit {
+
+        //Puede permitir que cualquier compilación continúe
+        // en caso de fallas de tareas utilizando el --continueparámetro
+        // en la invocación de Gradle. Si no desea escribir este parámetro todo el tiempo
+        gradle.startParameter.continueOnFailure = true
+        testLogging.showStandardStreams = true
+        //asigna todas las variables de sistema a  systemProperties
+        systemProperties System.getProperties()
+        //para pasar por linea de comandos el username y el password -P username="cristian"
+        systemProperties project.properties.subMap(["username","password"])
+        // para poder ejecutar tag especifico desde la linea de comandos  -D cucumber.filter.tags="@meet"
+        systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+    }
+}
+
+test.finalizedBy(aggregate)
