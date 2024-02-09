@@ -8,8 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features/ExtractosPorProducto.feature",
         glue = {"co.com.bancofalabellaempresas.ConsultasYExtractos.ExtractosPorProducto.Hooks",
-                "co.com.bancofalabellaempresas.ConsultasYExtractos.ExtractosPorProducto.stepDefinitions"},
-        tags = "@regresion",
+                "co.com.bancofalabellaempresas.ConsultasYExtractos.ExtractosPorProducto.Definitions"},
+        tags = "@DescargarPdf",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
 public class Runner {
