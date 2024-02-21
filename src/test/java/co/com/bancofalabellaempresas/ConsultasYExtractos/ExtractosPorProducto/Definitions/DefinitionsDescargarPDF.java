@@ -18,6 +18,7 @@ import net.serenitybdd.screenplay.actions.SelectFromOptions;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
+import static co.com.bancofalabellaempresas.ConsultasYExtractos.ExtractosPorProducto.utils.ManagmedFile.moveFile;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isCurrentlyVisible;
@@ -117,21 +118,22 @@ public class DefinitionsDescargarPDF extends PageComponent {
 
         OnStage.theActorInTheSpotlight().attemptsTo(
                 WaitUntil.the(BTN_DESCARGAR_EXTRACTO, isCurrentlyVisible()).forNoMoreThan(10).seconds(),
-                Click.on(BTN_DESCARGAR_EXTRACTO),
-                descargarPDF()
+                Click.on(BTN_DESCARGAR_EXTRACTO)
+                //descargarPDF()
 
 
                // Ensure.that(isPresentFile(1,downloadFolder)).isEqualTo(true)
         );
 
         Thread.sleep(5000);
-        assertTrue("No se descargo correctamente", isPresentFile(1,downloadFolder));
+        moveFile(downloadFolder,downloadFolderCopyPaste);
+        assertTrue("No se descargo correctamente", isPresentFile(1,downloadFolderCopyPaste));
 
        // String statementFilePath = String.format("%s%s", downloadFolder, fileNamePdf);
         //recupera nombre de archivos descargados
-        List<String> files= returnNameFiles(downloadFolder);
+        List<String> files= returnNameFiles(downloadFolderCopyPaste);
         //concatena la ruta del directorio con el nombre del archivo
-        String statementFilePath = String.format("%s%s%s", downloadFolder,"\\", files.get(0));
+        String statementFilePath = String.format("%s%s%s", downloadFolderCopyPaste,"\\", files.get(0));
         System.out.println("ruta archivo" + statementFilePath);
 
         theActorInTheSpotlight().whoCan(ReadPdf.downloadedInPath(statementFilePath));
@@ -141,6 +143,8 @@ public class DefinitionsDescargarPDF extends PageComponent {
         // retorna true si encuentra la cadena en el archivo
         boolean findText = ReadPdf.as(theActorInTheSpotlight()).findText("116060084657");
         assertTrue("No se Encontro La cadena Buscada",findText);
+
+
     }
 
 

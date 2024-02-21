@@ -1,6 +1,7 @@
 
 package co.com.bancofalabellaempresas.ConsultasYExtractos.ExtractosPorProducto.tasks;
 
+import co.com.bancofalabellaempresas.ConsultasYExtractos.ExtractosPorProducto.interactions.Refresh;
 import net.serenitybdd.annotations.Step;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
@@ -41,6 +42,7 @@ public class LoginTask implements Task {
 
 
         OnStage.theActorInTheSpotlight().attemptsTo(
+                Refresh.thePage(),
                 WaitUntil.the(CLIENTE_EMPRESARIAL, isCurrentlyVisible()).forNoMoreThan(20).seconds(),
                 Enter.theValue(data.get(0).get("ClienteEmpresarial")).into(CLIENTE_EMPRESARIAL),
                 SelectFromOptions.byVisibleText("Cédula de Ciudadanía").from(TIPO_DE_IDENTIFICACION),

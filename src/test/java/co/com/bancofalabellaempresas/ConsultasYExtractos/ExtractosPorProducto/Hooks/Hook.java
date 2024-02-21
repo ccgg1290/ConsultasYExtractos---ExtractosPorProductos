@@ -11,26 +11,39 @@ import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.thucydides.core.webdriver.SerenityWebdriverManager;
 import net.thucydides.model.util.EnvironmentVariables;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.nio.file.Paths;
+import java.sql.Driver;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import static co.com.bancofalabellaempresas.ConsultasYExtractos.ExtractosPorProducto.utils.DeleteFiles.deleteFiles;
 import static co.com.bancofalabellaempresas.ConsultasYExtractos.ExtractosPorProducto.utils.EnviromentConstants.returnUsuario;
+import static co.com.bancofalabellaempresas.ConsultasYExtractos.ExtractosPorProducto.utils.ManagmedFile.moveFile;
+import static co.com.bancofalabellaempresas.ConsultasYExtractos.ExtractosPorProducto.utils.ReturnDate.returnDate;
 
 public class Hook {
 
     private EnvironmentVariables environmentVariables;
     public static String downloadFolder;
+    public static String downloadFolderCopyPaste;
     public static String fileNamePdf;
     public static String fileNameExcel;
     static final Logger loggertest = LoggerFactory.getLogger(Hook.class);
 
     @Before
-    public void initialConfiguration() throws InterruptedException {
+    public void initialConfiguration() throws InterruptedException, IOException {
 
         System.out.println("variables " + downloadFolder + fileNameExcel+fileNamePdf);
         // downloadFolder="C:\\sers\\ccgualterosg\\Documents";
@@ -40,15 +53,29 @@ public class Hook {
                 .orElseThrow(IllegalArgumentException::new);
         fileNameExcel = environmentVariables.optionalProperty("statements.fileNamePdf")
                 .orElseThrow(IllegalArgumentException::new);
-        System.out.println("variables seteadas " + downloadFolder + fileNameExcel+fileNamePdf);
-        //deleteFiles(downloadFolder);
+        downloadFolderCopyPaste = environmentVariables.optionalProperty("download.filesFolderCopyPaste")
+                .orElseThrow(IllegalArgumentException::new);
+
+
+
+
+
+
+
+        System.out.println("variables seteadas " + downloadFolder + fileNameExcel+fileNamePdf+" \n archivo a pegar"+downloadFolderCopyPaste);
+        deleteFiles(downloadFolderCopyPaste);
         //mvn clean verify -D usuario="cristian"
         Properties propiedades = System.getProperties();
+
+        System.out.println("preferences "+System.getProperty("chrome_preferences.download.default_directory"));
         System.out.println("Estas son las propiedades "+propiedades.get("webdriver.base.url"));
-        System.out.println("Estas son la propiedades "+propiedades.get("java.vm.vendor"));
+        System.out.println("Estas son la propiedades "+propiedades.get("webdriver.driver"));
         System.out.println("Estas son la propiedades "+propiedades.get("usuario"));
 
         System.out.println("directorio por defecto: "+System.getProperty("chrome_preferences.download.default_directory"));
+        System.out.println("preferences firefox "+System.getProperty("disable-popup-blocking"));
+        System.out.println("preferences firefox "+System.setProperty("disable-popup-blocking",""));
+        System.out.println("preferences firefox"+System.getProperty("browser.download.dir"));
         System.setProperty("chrome_preferences.download.default_directory",downloadFolder);
         System.out.println("directorio por defecto: "+System.getProperty("chrome_preferences.download.default_directory"));
 
