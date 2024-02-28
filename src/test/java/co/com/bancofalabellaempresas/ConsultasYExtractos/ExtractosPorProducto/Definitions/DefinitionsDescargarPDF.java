@@ -61,6 +61,7 @@ public class DefinitionsDescargarPDF extends PageComponent {
 
     @And("^Selecciona el tipo de producto (.*)$")
     public void seleccionaElTipoDeProducto(String cuenta) throws InterruptedException {
+
         OnStage.theActorInTheSpotlight().attemptsTo(
                 WaitUntil.the(LISTA_TIPO_PRODUCTO, isCurrentlyVisible()).forNoMoreThan(10).seconds(),
                 SelectFromOptions.byVisibleText(cuenta).from(LISTA_TIPO_PRODUCTO)
@@ -126,6 +127,8 @@ public class DefinitionsDescargarPDF extends PageComponent {
         );
 
         Thread.sleep(5000);
+        System.out.println("directorio descarga "+downloadFolder);
+        System.out.println("directorio a copiar "+downloadFolderCopyPaste);
         moveFile(downloadFolder,downloadFolderCopyPaste);
         assertTrue("No se descargo correctamente", isPresentFile(1,downloadFolderCopyPaste));
 
@@ -134,8 +137,7 @@ public class DefinitionsDescargarPDF extends PageComponent {
         List<String> files= returnNameFiles(downloadFolderCopyPaste);
         //concatena la ruta del directorio con el nombre del archivo
         String statementFilePath = String.format("%s%s%s", downloadFolderCopyPaste,"\\", files.get(0));
-        System.out.println("ruta archivo" + statementFilePath);
-
+        //System.out.println("ruta archivo" + statementFilePath);
         theActorInTheSpotlight().whoCan(ReadPdf.downloadedInPath(statementFilePath));
         //recupera el pdf completo
         String pdfTextComplete = ReadPdf.as(theActorInTheSpotlight()).getTextComplete();

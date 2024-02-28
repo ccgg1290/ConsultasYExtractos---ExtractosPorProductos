@@ -16,9 +16,9 @@ public class IsPresentFile {
 
       File[] listaofFiles=folder.listFiles();
       for (File archivo:listaofFiles){
-          log.info("Nombre archivo: "+archivo.getName());
+          log.info("Nombre archivo presente: "+archivo.getName());
       }
-      log.info("Numero de archivos = "+listaofFiles.length);
+      log.info("Numero de archivos presente = "+listaofFiles.length);
       return listaofFiles.length>filesQuantity;
 
   }

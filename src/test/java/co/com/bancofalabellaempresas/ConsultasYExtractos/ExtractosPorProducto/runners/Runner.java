@@ -1,7 +1,14 @@
 package co.com.bancofalabellaempresas.ConsultasYExtractos.ExtractosPorProducto.runners;
 
+import io.cucumber.java.BeforeAll;
 import io.cucumber.junit.CucumberOptions;
+import io.cucumber.junit.CucumberSerenityRunner;
 import net.serenitybdd.cucumber.CucumberWithSerenity;
+import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
+import net.thucydides.junit.annotations.UseTestDataFrom;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
@@ -13,4 +20,12 @@ import org.junit.runner.RunWith;
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
 public class Runner {
+
+
+
+
+
+
+
+
 }

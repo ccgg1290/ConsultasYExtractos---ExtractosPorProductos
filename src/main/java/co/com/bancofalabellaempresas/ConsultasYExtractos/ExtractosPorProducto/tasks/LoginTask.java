@@ -9,11 +9,15 @@ import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.SelectFromOptions;
+import net.serenitybdd.screenplay.actions.Switch;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
+
 import java.util.List;
 import java.util.Map;
+
+
 
 
 import static co.com.bancofalabellaempresas.ConsultasYExtractos.ExtractosPorProducto.interactions.WindowsManager.changeWindow;
@@ -43,6 +47,7 @@ public class LoginTask implements Task {
 
         OnStage.theActorInTheSpotlight().attemptsTo(
                 Refresh.thePage(),
+
                 WaitUntil.the(CLIENTE_EMPRESARIAL, isCurrentlyVisible()).forNoMoreThan(20).seconds(),
                 Enter.theValue(data.get(0).get("ClienteEmpresarial")).into(CLIENTE_EMPRESARIAL),
                 SelectFromOptions.byVisibleText("Cédula de Ciudadanía").from(TIPO_DE_IDENTIFICACION),
@@ -55,7 +60,12 @@ public class LoginTask implements Task {
                 Enter.theValue(data.get(0).get("ClaveToken")).into(CLAVE_TOKEN),
                 WaitUntil.the(BTN_SIGIN, isCurrentlyVisible()).forNoMoreThan(10).seconds(),
                 Click.on(BTN_SIGIN),
-                changeWindow(getDriver()),
+                Switch.toNewWindow(),
+
+                //switchto("vale", OnStage.theActorInTheSpotlight()),
+                //getDriver().SwitchTo().Window(driver.WindowHandles[1]);
+               // Switch.to(getNewWindowHandle(actor, currentWindowHandle)),
+                //changeWindow(getDriver()),
                 HomePageTask.selectBank(data)
 
         );

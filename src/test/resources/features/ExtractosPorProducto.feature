@@ -20,9 +20,12 @@ Feature: Yo como cliente corporativo quiero descargar mi extracto de productos
     Then Deberia ver el extracto en la pantalla
     And Al darle click en el boton descargar deberia descargarse el extracto
 
+    #Examples: {'datafile': 'resources/testdata/examples.csv'}
     Examples:
       | TipoProducto                     |Producto     |Ano |Mes      |
       | CUENTA AHORROS BANCO FALABELLA   |116060084657 |2023|Diciembre|
+
+
 
 
 
@@ -42,6 +45,6 @@ Feature: Yo como cliente corporativo quiero descargar mi extracto de productos
       | TipoProducto                     |Producto                          |Mensaje                                         |
       | -- SELECCIONE EL TIPO PRODUCTO --|-- SELECCIONE EL TIPO PRODUCTO -- |Debe seleccionar el tipo de producto a consultar|
       | CUENTA CORRIENTE BANCO FALABELLA |-- SELECCIONE EL TIPO PRODUCTO -- |Seleccione el número del producto.              |
-      | CUENTA AHORROS BANCO FALABELLA   |116050057245                      |Se ha presentado un error, por favor validar con el siguiente ID: 86697862|
-      | CUENTA CORRIENTE BANCO FALABELLA |116050057245                      |146210000014|
+    #  | CUENTA AHORROS BANCO FALABELLA   |116050057245                      |Se ha presentado un error, por favor validar con el siguiente ID: 86697862|
+     # | CUENTA CORRIENTE BANCO FALABELLA |116050057245                      |146210000014|
 

@@ -8,6 +8,7 @@ import net.serenitybdd.annotations.Step;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.actions.Hit;
 import net.serenitybdd.screenplay.actors.OnStage;
+import net.thucydides.model.util.EnvironmentVariables;
 import org.openqa.selenium.Keys;
 import org.slf4j.LoggerFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,9 @@ import java.awt.event.KeyEvent;
 @Slf4j
 public class RobotJava extends PageObject implements Task {
 
+
+    private EnvironmentVariables environmentVariables;
+
     public static RobotJava descargarPDF() {
         return Tasks.instrumented(RobotJava.class);
     }
@@ -39,7 +43,17 @@ public class RobotJava extends PageObject implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        Thread.sleep(5000);
+
+        if(environmentVariables.getProperty("environment").equals("chrome")){
+            Thread.sleep(5000);
+            log.info("Guardando pdf en chrome");
+            Robot robot = robot = new Robot();
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+
+        };
+
+
 
    /*
         try {
@@ -76,7 +90,7 @@ public class RobotJava extends PageObject implements Task {
 
             //upload("C:\\Users\\ccgualterosg\\Documents\\proyecto_Automatizacion\\proyectos\\proyecto consultas y extractos\\ExtractosPorProducto\\\\src\\\\test\\resources\\archivos\\pruebaBotondescargarExtracto").to(find(chooseFile));
             //System.out.println("Despues");
-            System.out.println("ya vamos a dar enter");
+            //System.out.println("ya vamos a dar enter");
         //OnStage.theActorInTheSpotlight().attemptsTo((Performable) Hit.the(Keys.ENTER));
            // OnStage.theActorInTheSpotlight().attemptsTo(Hit.the(Keys.ENTER).into(BTN_MOSTRAR_DATOS));
 

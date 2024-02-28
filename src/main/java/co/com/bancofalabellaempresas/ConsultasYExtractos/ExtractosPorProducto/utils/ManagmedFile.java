@@ -33,27 +33,27 @@ public class ManagmedFile {
 
         String nameFile="EXT".concat(returnDate());
 
-        System.out.println("archivo a buscar "+nameFile);
+        log.info("nombre archivo construido "+nameFile);
 
 
 
 
-        System.out.println("RUTA origen:" + origen);
-        System.out.println("RUTA destino:" + destino);
+       // System.out.println("RUTA origen:" + origen);
+       // System.out.println("RUTA destino:" + destino);
         File folder = new File(origen);
 
         File[] listaofFiles = folder.listFiles();
         for (File archivo : listaofFiles) {
             if (archivo.getName().contains(nameFile)) {
-                System.out.println("nombre archivo a mover" + archivo.getName());
+                log.info("nombre archivo a mover: " + archivo.getName());
                 String archivoAMover = origen.concat(archivo.getName());
                 String rutaAMover = destino.concat(archivo.getName());
-                System.out.println("nombre archivo a mover" + archivoAMover);
-                System.out.println("nombre archivo a mover" + rutaAMover);
+                log.info("ruta archivo origen: " + archivoAMover);
+                log.info("ruta archivo destino: " + rutaAMover);
                 Path origenPath = FileSystems.getDefault().getPath(archivoAMover);
                 Path destinoPath = FileSystems.getDefault().getPath(rutaAMover);
                 Files.move(origenPath,destinoPath, StandardCopyOption.REPLACE_EXISTING);
-                log.info("Nombre archivo: " + archivo.getName());
+                //log.info("Nombre archivo: " + archivo.getName());
             }
 
         }

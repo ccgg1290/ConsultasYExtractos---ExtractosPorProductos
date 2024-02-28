@@ -2,13 +2,14 @@ package co.com.bancofalabellaempresas.ConsultasYExtractos.ExtractosPorProducto.a
 
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
+import lombok.extern.slf4j.Slf4j;
 import net.serenitybdd.screenplay.Ability;
 import net.serenitybdd.screenplay.Actor;
 import org.apache.poi.hssf.record.PageBreakRecord;
 
 import java.io.IOException;
 import java.sql.SQLOutput;
-
+@Slf4j
 public class ReadPdf implements Ability {
     private String pdfText;
     private final String filePath;
@@ -30,6 +31,8 @@ public class ReadPdf implements Ability {
         for (int i = 1; i <= pagesNumber; i++) {
             pdfText.append(PdfTextExtractor.getTextFromPage(pdfReader, i));
         }
+        //log.info("\n\n --Archivo completo "+pdfText.toString());
+
         return pdfText.toString();
     }
 
@@ -37,11 +40,17 @@ public class ReadPdf implements Ability {
         boolean valorencontrado = false;
         int pagesNumber = pdfReader.getNumberOfPages();
 
+        log.info("Cadena buscada "+cadena);
+
         for (int i = 1; i <= pagesNumber; i++) {
             pdfText = PdfTextExtractor.getTextFromPage(pdfReader, i);
 
-            System.out.println("HOJA  " + i + ": \n" + pdfText);
+            //System.out.println("HOJA  " + i + ": \n" + pdfText);
+           // log.info("HOJA  " + i + ": \n" + pdfText);
             if(pdfText.contains(cadena)){
+
+                log.info("Cadena encontrada en la Hoja " + i + ": \n");
+                //        + pdfText);
                 valorencontrado=true;
                 break;
             };

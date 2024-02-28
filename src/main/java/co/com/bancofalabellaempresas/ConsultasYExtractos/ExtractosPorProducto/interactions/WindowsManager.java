@@ -10,6 +10,9 @@ import net.serenitybdd.screenplay.actors.OnStage;
 import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
+
+import static net.serenitybdd.core.Serenity.getDriver;
+
 public class WindowsManager implements Task {
   // public class GetWindowFB  {
 
@@ -22,9 +25,13 @@ public class WindowsManager implements Task {
     return Tasks.instrumented(WindowsManager.class, driver);
   }
   public static Actor.ErrorHandlingMode actorChangeWindow(WebDriver driver) {
+
+
+    getDriver().switchTo().frame("frame name");
     //String oldTab = driver.getWindowHandle();
     ArrayList<String> newTab = new ArrayList<String>(driver.getWindowHandles());
     //System.out.println("navegadoes"+newTab.size());
+    driver.close();
     driver.switchTo().window(newTab.get(1));
     newTab.remove(newTab.get(0));
     //System.out.println("navegadoes"+newTab.size());

@@ -1,6 +1,8 @@
 
 package co.com.bancofalabellaempresas.ConsultasYExtractos.ExtractosPorProducto.tasks;
 import static co.com.bancofalabellaempresas.ConsultasYExtractos.ExtractosPorProducto.userinterfaces.HomePage.LISTADEBANCOS;
+
+import co.com.bancofalabellaempresas.ConsultasYExtractos.ExtractosPorProducto.interactions.Refresh;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
@@ -28,7 +30,8 @@ public class HomePageTask implements Task {
     public <T extends Actor> void performAs(T actor) {
 
         OnStage.theActorInTheSpotlight().attemptsTo(
-                WaitUntil.the(LISTADEBANCOS, isCurrentlyVisible()).forNoMoreThan(60).seconds(),
+                Refresh.thePage(),
+                WaitUntil.the(LISTADEBANCOS, isCurrentlyVisible()).forNoMoreThan(20).seconds(),
                 SelectFromOptions.byVisibleText(data.get(0).get("Banco")).from(LISTADEBANCOS)
         );
     }

@@ -1,0 +1,87 @@
+10:40:42.858 [LUCY] INFO   - 
+
+-------------------------------------------------------------------------------------
+     _______. _______ .______       _______ .__   __.  __  .___________.____    ____ 
+    /       ||   ____||   _  \     |   ____||  \ |  | |  | |           |\   \  /   / 
+   |   (----`|  |__   |  |_)  |    |  |__   |   \|  | |  | `---|  |----` \   \/   /  
+    \   \    |   __|  |      /     |   __|  |  . `  | |  |     |  |       \_    _/   
+.----)   |   |  |____ |  |\  \----.|  |____ |  |\   | |  |     |  |         |  |     
+|_______/    |_______|| _| `._____||_______||__| \__| |__|     |__|         |__|    
+                                                                                     
+ News and tutorials at https://serenity-bdd.info                                     
+ Documentation at https://serenity-bdd.github.io                                     
+ Test Automation Training and Coaching: https://www.serenity-dojo.com                
+ Commercial Support: https://www.serenity-dojo.com/serenity-bdd-enterprise-support   
+ Join the Serenity Community on Gitter: https://gitter.im/serenity-bdd/serenity-core 
+-------------------------------------------------------------------------------------
+
+10:40:42.870 [LUCY] INFO   - Test Suite Started: Yo como cliente corporativo quiero descargar mi extracto de productos
+10:40:43.018 [LUCY] INFO   - Test Suite Started: Yo como cliente corporativo quiero descargar mi extracto de productos
+10:40:43.345 [LUCY] INFO   - 
+  _____   ___   ___   _____     ___   _____     _     ___   _____   ___   ___  
+ |_   _| | __| / __| |_   _|   / __| |_   _|   /_\   | _ \ |_   _| | __| |   \ 
+   | |   | _|  \__ \   | |     \__ \   | |    / _ \  |   /   | |   | _|  | |) |
+   |_|   |___| |___/   |_|     |___/   |_|   /_/ \_\ |_|_\   |_|   |___| |___/ 
+
+Cliente descarga su extracto con exito(yo-como-cliente-corporativo-quiero-descargar-mi-extracto-de-productos;cliente-descarga-su-extracto-con-exito)
+--------------------------------------------------------------------------------
+10:40:43.373 [LUCY] INFO   - |-- 1: Cliente descarga su extracto con exito ({TipoProducto=CUENTA AHORROS BANCO FALABELLA, Producto=116060084657, Ano=2023, Mes=Diciembre})
+10:40:43.496 [LUCY] INFO  c.c.b.C.E.utils.DeleteFiles - 
+ nombre de archivo: EXT20240228103633.pdf
+10:40:43.499 [LUCY] INFO  c.c.b.C.E.utils.DeleteFiles - Se ha eliminado el archivo exitosamente
+10:40:43.502 [LUCY] INFO  c.c.b.C.E.Hooks.Hook - ****** INICIO LOGIN ******
+10:40:44.007 [LUCY] INFO   - |---- Cliente Corporativo opens the Login page
+10:40:44.304 [LUCY] INFO  n.s.c.w.d.ChromeDriverProvider - Starting Chrome driver instance with capabilities:
+10:40:44.308 [LUCY] INFO  n.s.c.w.d.ChromeDriverProvider - Capabilities {acceptInsecureCerts: true, browserName: MicrosoftEdge, goog:chromeOptions: {args: [remote-allow-origins=*], extensions: []}, ms:edgeOptions: {args: [--headless=new, remote-allow-origins=*, test-type, ignore-certificate-errors, incognito, disable-infobars, disable-gpu, disable-default-apps, disable-popup-blocking], prefs: {browser.download.dir: C:\Users\ccgualterosg\Docum...}}}
+10:40:57.807 [LUCY] INFO   - |---- -------------- Before the test--------------
+10:40:57.896 [LUCY] INFO   - |------ Cliente Corporativo refreshes the browser
+10:40:58.687 [LUCY] INFO   - |------ Cliente Corporativo enters '23534' into Cliente Empresarial
+10:40:58.920 [LUCY] INFO   - |------ Cliente Corporativo selects Cédula de Ciudadanía on Tipo de identificacion
+10:40:59.120 [LUCY] INFO   - |------ Cliente Corporativo enters '1049653008' into Numero de identificacion
+10:40:59.302 [LUCY] INFO   - |------ Cliente Corporativo enters '976431' into Clave personal
+10:40:59.489 [LUCY] INFO   - |------ Cliente Corporativo enters '123456789' into Clave token
+10:40:59.712 [LUCY] INFO   - |------ Cliente Corporativo clicks on button ingresar
+10:41:01.077 [LUCY] INFO   - |------ Cliente Corporativo switches to new window
+10:41:07.048 [LUCY] WARN  n.s.s.actions.SwitchToNewWindow - Window size does not match!
+10:41:07.237 [LUCY] INFO   - |------ Cliente corporativo home page task
+10:41:07.258 [LUCY] INFO   - |-------- Cliente Corporativo refreshes the browser
+10:41:10.138 [LUCY] INFO   - |-------- Cliente Corporativo selects FALABELLA DE COLOMBIA S.A on Lista de bancos
+10:41:10.347 [LUCY] INFO   - |------ Then El nombre en el Home page  should be 'Dayana Andrea Rojas Alba'
+10:41:10.418 [LUCY] INFO  c.c.b.C.E.Hooks.Hook - ****** FIN LOGIN ******
+10:41:10.423 [LUCY] INFO   - |---- Given Que el cliente se encuentra en el modulo de consultas y extractos en el submodulo Extracto por producto
+10:41:10.529 [LUCY] INFO   - |------ Cliente Corporativo clicks on Consultas y extractos
+10:41:15.007 [LUCY] INFO   - |------ Cliente Corporativo clicks on Extracto por producto
+10:41:19.828 [LUCY] INFO   - |------ Then El titulo  should be 'Extractos por Producto'
+10:41:19.892 [LUCY] INFO   - |---- And Selecciona el tipo de producto CUENTA AHORROS BANCO FALABELLA
+10:41:19.949 [LUCY] INFO   - |------ Cliente Corporativo selects CUENTA AHORROS BANCO FALABELLA on Cliente Empresarial
+10:41:20.073 [LUCY] INFO   - |---- And Selecciona el producto 116060084657
+10:41:21.883 [LUCY] INFO   - |------ Cliente Corporativo selects 116060084657 on Cliente Empresarial
+10:41:21.996 [LUCY] INFO   - |---- And Selecciona el ano del extracto 2023
+10:41:24.255 [LUCY] INFO   - |------ Cliente Corporativo selects  2023 on Cliente Empresarial
+10:41:26.408 [LUCY] INFO   - |---- And Selecciona el mes del extracto Diciembre
+10:41:26.461 [LUCY] INFO   - |------ Cliente Corporativo selects Diciembre on Cliente Empresarial
+10:41:26.559 [LUCY] INFO   - |---- When Da click al boton Mostrar Datos
+10:41:26.613 [LUCY] INFO   - |------ Cliente Corporativo clicks on Cliente Empresarial
+10:41:31.333 [LUCY] INFO   - |---- Then Deberia ver el extracto en la pantalla
+10:41:31.337 [LUCY] INFO   - |------ Then El extracto esta presente should be (true)
+10:41:31.444 [LUCY] INFO   - |---- And Al darle click en el boton descargar deberia descargarse el extracto
+10:41:31.566 [LUCY] INFO   - |------ Cliente Corporativo clicks on Cliente Empresarial
+10:41:38.942 [LUCY] INFO  c.c.b.C.E.utils.ManagmedFile - nombre archivo construido EXT2024022810
+10:41:38.944 [LUCY] INFO  c.c.b.C.E.utils.ManagmedFile - nombre archivo a mover: EXT20240228104133.pdf
+10:41:38.944 [LUCY] INFO  c.c.b.C.E.utils.ManagmedFile - ruta archivo origen: C:\Users\ccgualterosg\\Downloads\\EXT20240228104133.pdf
+10:41:38.945 [LUCY] INFO  c.c.b.C.E.utils.ManagmedFile - ruta archivo destino: C:\Users\ccgualterosg\Documents\proyecto_Automatizacion\proyectos\proyecto consultas y extractos\ExtractosPorProducto\\src\\test\\resources\\archivos\\EXT20240228104133.pdf
+10:41:38.954 [LUCY] INFO  c.c.b.C.E.questions.IsPresentFile - Nombre archivo presente: EXT20240228104133.pdf
+10:41:38.955 [LUCY] INFO  c.c.b.C.E.questions.IsPresentFile - Numero de archivos presente = 1
+10:41:38.959 [LUCY] INFO  c.c.b.C.E.questions.ReturnFiles - Nombre archivo retornado: EXT20240228104133.pdf
+10:41:38.960 [LUCY] INFO  c.c.b.C.E.questions.ReturnFiles - Numero de archivos retornados= 1
+10:41:39.387 [LUCY] INFO  c.c.b.C.E.abilities.ReadPdf - Cadena buscada 116060084657
+10:41:39.392 [LUCY] INFO  c.c.b.C.E.abilities.ReadPdf - Cadena encontrada en la Hoja 1: 
+
+10:41:40.668 [LUCY] INFO   - 
+  _____   ___   ___   _____     ___     _     ___   ___   ___   ___  
+ |_   _| | __| / __| |_   _|   | _ \   /_\   / __| / __| | __| |   \ 
+   | |   | _|  \__ \   | |     |  _/  / _ \  \__ \ \__ \ | _|  | |) |
+   |_|   |___| |___/   |_|     |_|   /_/ \_\ |___/ |___/ |___| |___/ 
+
+Cliente descarga su extracto con exito
+----------------------------------------------------------------------

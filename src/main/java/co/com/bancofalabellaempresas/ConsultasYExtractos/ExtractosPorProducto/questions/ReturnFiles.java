@@ -18,11 +18,11 @@ public class ReturnFiles {
       File[] listaofFiles=folder.listFiles();
 
       for (File archivo:listaofFiles){
-          log.info("Nombre archivo: "+archivo.getName());
+          log.info("Nombre archivo retornado: "+archivo.getName());
           lista.add(archivo.getName());
 
       }
-      log.info("Numero de archivos = "+listaofFiles.length);
+      log.info("Numero de archivos retornados= "+listaofFiles.length);
       return lista;
 
   }
